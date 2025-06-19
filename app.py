@@ -165,7 +165,7 @@ def update_detailed_graph(hoverData, clickData, dataset_name):
     dataset_for_year = detailed_datasets.get(dataset_name, {}).get(year, None)
     if dataset_for_year is None:
         return px.scatter(title=f"No data for {dataset_name} in {year}")
-    fig = px.scatter(dataset_for_year, x=dataset_for_year.columns[0], y=dataset_for_year.columns[1], title=f'{dataset_name} {year} Data', color_discrete_sequence=["#190038"])
+    fig = px.scatter(dataset_for_year, x=dataset_for_year.columns[0], y=dataset_for_year.columns[2], title=f'{dataset_name} {year} Data', color_discrete_sequence=["#190038"])
     fig.update_traces(mode='markers')
     fig.update_layout(
         plot_bgcolor='white',
