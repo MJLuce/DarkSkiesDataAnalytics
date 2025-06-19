@@ -1,3 +1,4 @@
+from flask import Flask
 import dash
 from dash import Dash, html, dcc, Input, Output, callback
 import pandas as pd
@@ -281,6 +282,7 @@ def predict_darkness(year, dataset_name):
 
     predicted_darkness = p(year)
     return f"Predicted Darkness for {year}: {predicted_darkness:.2f} mag/arcsec²."
-    
+server = app.server
+
 if __name__ == '__main__':
     app.run(debug=True)
