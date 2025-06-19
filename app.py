@@ -131,17 +131,21 @@ def update_graph(dataset_name):
             gridcolor="#5F3B53",
             linecolor='black',
             ticks='outside'
-        ))
+        ),
+        autosize=True,
+        )
     fig.update_traces(line=dict(width=3))
     return fig
 @callback(
     Output('detailed-graph', 'figure'),
     Input('darkness-graph', 'hoverData'),
+    Input('darkness-graph', 'clickData'),
     Input('dataset-selector', 'value')
 )
 
-def update_detailed_graph(hoverData, dataset_name):
-    if hoverData is None:
+def update_detailed_graph(hoverData, clickData, dataset_name):
+    eventdata = hoverData or clickData
+    if eventdata is None:
         fig = px.scatter(title="Hover Over a Datapoint Above to See Yearly Data!")
         fig.update_layout(
             plot_bgcolor='pink',
@@ -157,7 +161,7 @@ def update_detailed_graph(hoverData, dataset_name):
         )
         return fig
     
-    year = hoverData['points'][0]['x']
+    year = eventdata['points'][0]['x']
     dataset_for_year = detailed_datasets.get(dataset_name, {}).get(year, None)
     if dataset_for_year is None:
         return px.scatter(title=f"No data for {dataset_name} in {year}")
