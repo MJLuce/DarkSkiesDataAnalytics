@@ -7,6 +7,7 @@ import numpy as np #numerical edits
 import plotly.express as px #Dynamic graphs mostly used for raw data
 
 #from datetime import datetime, timedelta, date #Time manipulation
+app = Flask(__name__)
 
 
 
