@@ -1,0 +1,23 @@
+.nav-bar {
+    background-color: #011244;
+    padding: 15px;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    padding: 10px;
+    background-color: #011244;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    font-size: 24px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: hsla(160, 100%, 27%, 0.469);
+    color: white;
+
+}
