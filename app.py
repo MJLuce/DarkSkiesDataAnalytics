@@ -8,6 +8,8 @@ app.layout = html.Div([
     html.Div([
         dcc.Link("Home", href="/", className="nav-link"),
         dcc.Link("Unweighted Graphs", href="/unweighted-graphs", className="nav-link"),
+        dcc.Link("Weighted Graphs", href="/weighted-graphs", className="nav-link"),
+  
     ], className="nav-bar"),
     html.Hr(),
     page_container  # This loads the current page
