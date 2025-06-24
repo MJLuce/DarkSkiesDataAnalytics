@@ -63,7 +63,7 @@ layout = html.Div([
     html.Div([
         html.Label("Select Dataset"),
         dcc.Dropdown(
-            id='dataset-selector',
+            id='dataset-selector1',
             options=[{'label': name, 'value': name} for name in datasets.keys()],
             value='Kishwauketoe, Williams Bay, WI'
         ),
@@ -71,23 +71,23 @@ layout = html.Div([
 
 
     html.Div([
-        dcc.Graph(id='darkness-graph'),
-        dcc.Graph(id='detailed-graph')
+        dcc.Graph(id='darkness-graph1'),
+        dcc.Graph(id='detailed-graph1')
     ]),
 
     html.Div(
-        id='prediction-label',
+        id='prediction-label1',
         style={'padding': '10px', 'backgroundColor': "#e6eff1"}),
     
     html.Div([
-        dcc.Input(id='year-input', type='number', value=2025, step=1),
-        html.Div(id='prediction-output', style={'marginTop': '10px', 'fontWeight': 'bold'})
+        dcc.Input(id='year-input1', type='number', value=2025, step=1),
+        html.Div(id='prediction-output1', style={'marginTop': '10px', 'fontWeight': 'bold'})
     ], style={'padding': '20px', 'backgroundColor': "#e6eff1"})
 ], style={'fontFamily': 'Atkinson Hyperlegible, sans-serif'})
 
 @callback(
-    Output('darkness-graph', 'figure'),
-    Input('dataset-selector', 'value'),
+    Output('darkness-graph1', 'figure'),
+    Input('dataset-selector1', 'value'),
     #Input('year-selector', 'value'),
 )
 def update_graph(dataset_name):
@@ -139,10 +139,10 @@ def update_graph(dataset_name):
     fig.update_traces(line=dict(width=3))
     return fig
 @callback(
-    Output('detailed-graph', 'figure'),
-    Input('darkness-graph', 'hoverData'),
-    Input('darkness-graph', 'clickData'),
-    Input('dataset-selector', 'value')
+    Output('detailed-graph1', 'figure'),
+    Input('darkness-graph1', 'hoverData'),
+    Input('darkness-graph1', 'clickData'),
+    Input('dataset-selector1', 'value')
 )
 
 def update_detailed_graph(hoverData, clickData, dataset_name):
@@ -257,16 +257,16 @@ def update_detailed_graph(hoverData, clickData, dataset_name):
     return fig
 
 @callback(
-    Output('prediction-label', 'children'),
-    Input('dataset-selector', 'value')
+    Output('prediction-label1', 'children'),
+    Input('dataset-selector1', 'value')
 )
 def update_prediction_label(dataset_name):
     return f"Enter a Year to Predict Darkness from {dataset_name}:"
 
 @callback(
-    Output('prediction-output', 'children'),
-    Input('year-input', 'value'),
-    Input('dataset-selector', 'value')
+    Output('prediction-output1', 'children'),
+    Input('year-input1', 'value'),
+    Input('dataset-selector1', 'value')
 )
 
 
