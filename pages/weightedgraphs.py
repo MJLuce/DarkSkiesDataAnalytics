@@ -32,7 +32,7 @@ data4Kish = pd.read_csv('filtereddataKish4.csv')
 # Sample datasets
 dfKish = pd.DataFrame({
     "Time": [2021, 2022, 2023, 2024],
-    "Darkness": [19.93, 19.97, 19.81, 19.47],
+    "Darkness": [20.0112328767, 19.82477778, 19.83640909, 19.574852941],
 })
 
 dfTP = pd.DataFrame({
@@ -98,14 +98,13 @@ def update_graph(dataset_name):
 
     for year, df in yearly_data.items():
         if isinstance(df, pd.DataFrame) and 'median_darkness' in df.columns:
-            darkness_values = df['median_darkness'].dropna()
 
-            if len(darkness_values) > 0:
-                mean_darkness = np.mean(darkness_values)
-                sem = np.std(darkness_values, ddof=1) / np.sqrt(len(darkness_values))
-
+            if len(df['median_darkness']) > 0:
+                mean_darkness = np.mean(df['median_darkness'])
+                sem = np.std(df['median_darkness'], ddof=1) / np.sqrt(len(df['median_darkness']))
                 mean_darkness_per_year[year] = mean_darkness
                 sem_per_year[year] = sem
+ 
             else:
                 print(f"No valid data for Darkness in {year}")
         else:
@@ -122,14 +121,15 @@ def update_graph(dataset_name):
     y_err = np.array([sem_per_year[year] for year in years])
 
     # Weighted linear regression
-    w = 1 / y_err**2
-    x_bar = np.sum(w * x_data) / np.sum(w)
-    y_bar = np.sum(w * y_data) / np.sum(w)
-    numerator = np.sum(w * (x_data - x_bar) * (y_data - y_bar))
-    denominator = np.sum(w * (x_data - x_bar)**2)
+    w1 = 1 / y_err**2
+    x_bar1 = np.sum(w1 * x_data) / np.sum(w1)
+    y_bar1 = np.sum(w1 * y_data) / np.sum(w1)
+
+    numerator = np.sum(w1 * (x_data - x_bar1) * (y_data - y_bar1))
+    denominator = np.sum(w1 * (x_data - x_bar1)**2)
     slope1 = numerator / denominator
     slope_se = np.sqrt(1 / denominator)
-    intercept1 = y_bar - slope1 * x_bar
+    intercept1 = y_bar1 - slope1*x_bar1
     y_fit = slope1 * x_data + intercept1
 
     fig = go.Figure()

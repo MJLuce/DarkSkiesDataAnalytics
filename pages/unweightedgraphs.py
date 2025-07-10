@@ -32,7 +32,7 @@ data4Kish = pd.read_csv('filtereddataKish4.csv')
 # Sample datasets
 dfKish = pd.DataFrame({
     "Time": [2021, 2022, 2023, 2024],
-    "Darkness": [19.93, 19.97, 19.81, 19.47],
+    "Darkness": [20.011, 19.825, 19.836, 19.575],
 })
 
 dfTP = pd.DataFrame({
