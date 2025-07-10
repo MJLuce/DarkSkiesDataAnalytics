@@ -194,8 +194,8 @@ def update_graph(dataset_name):
 dataset_dict = {
     "Total Data": pd.DataFrame({
         "datasets": ["Kishwauketoe", "Ted Peters"],
-        "slope1": [0.1198, 0.1014],
-        "slope_se": [0.0441, 0.0350]
+        "slope1": [0.1171, 0.1014],
+        "slope_se": [0.0288, 0.0350]
     }),
 
 }
